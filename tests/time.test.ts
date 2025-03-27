@@ -30,4 +30,14 @@ describe('FMTime', () => {
   test('should correctly calculate Anno Ordinis (A.O.) year', () => {
     expect(fmTime.toAB(2025)).toBe(3936);
   });
+
+  test('should correctly format date in Anno Lucis (A.L.)', () => {
+    const date = new Date('2024-01-01');
+    expect(fmTime.formatALDate(date)).toBe('1/1/6024');
+  });
+
+  test('should correctly format date in Anno Mundi (A.M.)', () => {
+    const date = new Date('2024-01-01');
+    expect(fmTime.formatAMDate(date)).toBe('1/1/5784');
+  });
 });

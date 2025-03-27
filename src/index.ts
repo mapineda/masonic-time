@@ -29,4 +29,16 @@ export class FMTime {
   toAB(year: number): number {
     return year + this.yearABOffset;
   }
+
+  formatALDate(date: Date): string {
+    const year = date.getUTCFullYear();
+    const alYear = this.toAL(year);
+    return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${alYear}`;
+  }
+
+  formatAMDate(date: Date): string {
+    const year = date.getUTCFullYear();
+    const amYear = this.toAM(year);
+    return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${amYear}`;
+  }
 }
