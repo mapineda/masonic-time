@@ -40,4 +40,23 @@ describe('FMTime', () => {
     const date = new Date('2024-01-01');
     expect(fmTime.formatAMDate(date)).toBe('1/1/5784');
   });
+  test('should correctly format date in Anno Inventionis (A.I.)', () => {
+    const date = new Date('2024-01-01');
+    expect(fmTime.formatAIDate(date)).toBe('1/1/2554');
+  });
+
+  test('should correctly format date in Anno Depositionis (A.Dep.)', () => {
+      const date = new Date('2024-01-01');
+      expect(fmTime.formatAdepDate(date)).toBe('1/1/3024');
+  });
+
+  test('should correctly format date in Anno Ordinis (A.O.)', () => {
+      const date = new Date('2024-01-01');
+      expect(fmTime.formatAODDate(date)).toBe('1/1/906');
+  });
+
+  test('should correctly format date in Anno Benefacio (A.B.)', () => {
+      const date = new Date('2024-01-01');
+      expect(fmTime.formatABDate(date)).toBe('1/1/3935');
+  });
 });

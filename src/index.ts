@@ -41,4 +41,28 @@ export class FMTime {
     const amYear = this.toAM(year);
     return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${amYear}`;
   }
+
+  formatAIDate(date: Date): string {
+    const year = date.getUTCFullYear();
+    const aiYear = this.toAI(year);
+    return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${aiYear}`;
+  }
+
+  formatAdepDate(date: Date): string {
+    const year = date.getUTCFullYear();
+    const adepYear = this.toADep(year);
+    return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${adepYear}`;
+  }
+
+  formatAODDate(date: Date): string {
+    const year = date.getUTCFullYear();
+    const toAO = this.toAO(year);
+    return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${toAO}`;
+  }
+
+  formatABDate(date: Date): string {
+    const year = date.getUTCFullYear();
+    const toAB = this.toAB(year);
+    return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${toAB}`;
+  }
 }
