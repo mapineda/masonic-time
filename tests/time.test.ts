@@ -72,4 +72,8 @@ describe('FMTime parsing, validating, and manipulation', () => {
   test('parseALDate should convert A.L. date string to Javascript Date', () => {
     expect(fmTime.parseALDate("1/1/6024 A.L")).toEqual(new Date(2024, 0, 1));
   });
+
+  test('parseAMDate should convert A.L. date string to Javascript Date', () => {
+    expect(fmTime.parseAMDate("1/1/5784 A.M")).toEqual(new Date(2024, 0, 1));
+  });
 })

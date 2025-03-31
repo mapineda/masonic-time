@@ -73,4 +73,12 @@ export class FMTime {
     const gregorianYear = alYear - this.yearALOffset;
     return new Date(gregorianYear, month - 1, day);
   }
+
+  parseAMDate(dateStr: string): Date | null {
+    const match = dateStr.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4}) A\.M\.?$/);
+    if (!match) return null;
+    const [_, month, day, amYear] = match.map(Number);
+    const gregorianYear = amYear - this.yearAMOffset;
+    return new Date(gregorianYear, month - 1, day);
+  }
 }
