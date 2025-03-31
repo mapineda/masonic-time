@@ -65,4 +65,12 @@ export class FMTime {
     const toAB = this.toAB(year);
     return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${toAB}`;
   }
+
+  parseALDate(dateStr: string): Date | null {
+    const match = dateStr.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4}) A\.L\.?$/);
+    if (!match) return null;
+    const [_, month, day, alYear] = match.map(Number);
+    const gregorianYear = alYear - this.yearALOffset;
+    return new Date(gregorianYear, month - 1, day);
+  }
 }

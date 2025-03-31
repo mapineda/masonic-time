@@ -60,3 +60,16 @@ describe('FMTime', () => {
       expect(fmTime.formatABDate(date)).toBe('1/1/3935');
   });
 });
+
+describe('FMTime parsing, validating, and manipulation', () => {
+  let fmTime: FMTime;
+
+  beforeEach(() => {
+    fmTime = new FMTime();
+  });
+
+  // parsing tests
+  test('parseALDate should convert A.L. date string to Javascript Date', () => {
+    expect(fmTime.parseALDate("1/1/6024 A.L")).toEqual(new Date(2024, 0, 1));
+  });
+})
