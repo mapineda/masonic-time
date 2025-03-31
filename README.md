@@ -47,6 +47,14 @@ console.log(fmTime.formatAODDate(date)); // '1/1/906'
 console.log(fmTime.formatABDate(date)); // '1/1/3935'
 
 ```
+## Parse Dates Masonic Calendar Strings to Javascript Date
+
+```typescript
+
+console.log(fmTime.parseALDate("1/1/6024 A.L")); // '1/1/2024'
+console.log(fmTime.parseAMDate("1/1/5784 A.M")); // '1/1/2024'
+```
+
 
 # API Reference
 
