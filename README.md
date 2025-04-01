@@ -53,6 +53,10 @@ console.log(fmTime.formatABDate(date)); // '1/1/3935'
 
 console.log(fmTime.parseALDate("1/1/6024 A.L")); // '1/1/2024'
 console.log(fmTime.parseAMDate("1/1/5784 A.M")); // '1/1/2024'
+console.log(fmTime.parseAIDate("1/1/2554 A.M")); // '1/1/2024'
+console.log(fmTime.parseADepDate("1/1/3024 A.M")); // '1/1/2024'
+console.log(fmTime.parseAODate("1/1/906 A.M")); // '1/1/2024'
+console.log(fmTime.parseABDate("1/1/3935 A.M")); // '1/1/2024'
 ```
 
 
