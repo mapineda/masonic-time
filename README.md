@@ -91,7 +91,7 @@ Jest will execute the test cases defined in __tests__ to ensure all conversions 
 
 # TODO:
 
-- [] *Parsing* (i.e., converting a formatted Masonic date back into a JavaScript Date object).
+- [X] *Parsing* (i.e., converting a formatted Masonic date back into a JavaScript Date object).
 - [] *Validating* (i.e., checking if a given Masonic date is valid).
 - [] *Manipulating*  (i.e., adding/subtracting days, months, or years in Masonic time).
 
