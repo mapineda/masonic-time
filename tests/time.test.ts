@@ -73,7 +73,23 @@ describe('FMTime parsing, validating, and manipulation', () => {
     expect(fmTime.parseALDate("1/1/6024 A.L")).toEqual(new Date(2024, 0, 1));
   });
 
-  test('parseAMDate should convert A.L. date string to Javascript Date', () => {
+  test('parseAMDate should convert A.M. date string to Javascript Date', () => {
     expect(fmTime.parseAMDate("1/1/5784 A.M")).toEqual(new Date(2024, 0, 1));
+  });
+
+  test('parseAIDate should convert A.I. date string to Javascript Date', () => {
+    expect(fmTime.parseAIDate("1/1/2554 A.I")).toEqual(new Date(2024, 0, 1));
+  });
+
+  test('parseADepDate should convert A.Dep. date to JavaScript Date', () => {
+    expect(fmTime.parseADepDate("1/1/3024 A.Dep.")).toEqual(new Date(2024, 0, 1));
+  });
+
+  test('parseAODate should convert A.O. date to JavaScript Date', () => {
+    expect(fmTime.parseAODate("1/1/906 A.O")).toEqual(new Date(2024, 0, 1));
+  });
+
+  test('parseABDate should convert A.B. date to JavaScript Date', () => {
+    expect(fmTime.parseABDate("1/1/3935 A.B.")).toEqual(new Date(2024, 0, 1));
   });
 })

@@ -3,8 +3,20 @@ export class FMTime {
   private yearAMOffset: number = 3760;
   private yearAIOffset: number = 530;
   private yearADepOffset: number = 1000;
-  private yearAOrOffset: number = 1118;
+  private yearAOrOffset: number = -1118;
   private yearABOffset: number = 1911;
+
+  private parseMasonicDate(dateStr: string, offset: number, suffix: string): Date | null {
+    console.log('***** ', dateStr);
+    const regex = new RegExp(`^(\\d{1,2})/(\\d{1,2})/(\\d{1,4}) ${suffix}\\.?$`);
+    const match = dateStr.match(regex);
+    if (!match) return null;
+    
+    const [, month, day, masonicYear] = match.map(Number);
+    const gregorianYear = masonicYear - offset;
+
+    return new Date(gregorianYear, month - 1, day);
+  }
 
   toAL(year: number): number {
     return year + this.yearALOffset;
@@ -23,7 +35,7 @@ export class FMTime {
   }
 
   toAO(year: number): number {
-    return year - this.yearAOrOffset;
+    return year + this.yearAOrOffset;
   }
 
   toAB(year: number): number {
@@ -67,18 +79,26 @@ export class FMTime {
   }
 
   parseALDate(dateStr: string): Date | null {
-    const match = dateStr.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4}) A\.L\.?$/);
-    if (!match) return null;
-    const [_, month, day, alYear] = match.map(Number);
-    const gregorianYear = alYear - this.yearALOffset;
-    return new Date(gregorianYear, month - 1, day);
+    return this.parseMasonicDate(dateStr, this.yearALOffset, "A\\.L");
   }
 
   parseAMDate(dateStr: string): Date | null {
-    const match = dateStr.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4}) A\.M\.?$/);
-    if (!match) return null;
-    const [_, month, day, amYear] = match.map(Number);
-    const gregorianYear = amYear - this.yearAMOffset;
-    return new Date(gregorianYear, month - 1, day);
+    return this.parseMasonicDate(dateStr, this.yearAMOffset, "A\\.M");
+  }
+
+  parseAIDate(dateStr: string): Date | null {
+    return this.parseMasonicDate(dateStr, this.yearAIOffset, "A\\.I");
+  }
+
+  parseADepDate(dateStr: string): Date | null {
+    return this.parseMasonicDate(dateStr, this.yearADepOffset, "A\\.Dep");
+  }
+
+  parseAODate(dateStr: string): Date | null {
+    return this.parseMasonicDate(dateStr, this.yearAOrOffset, "A\\.O");
+  }
+
+  parseABDate(dateStr: string): Date | null {
+      return this.parseMasonicDate(dateStr, this.yearABOffset, "A\\.B");
   }
 }
