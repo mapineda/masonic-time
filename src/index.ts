@@ -101,4 +101,16 @@ export class FMTime {
   parseABDate(dateStr: string): Date | null {
       return this.parseMasonicDate(dateStr, this.yearABOffset, "A\\.B");
   }
+
+  addDays(date: Date, days: number): Date {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getUTCDate() + days);
+    return newDate;
+  }
+
+  subtractDays(date: Date, days: number): Date {
+    const newDate = new Date(date);
+    newDate.setDate(newDate.getUTCDate() - days);
+    return newDate;
+  }
 }

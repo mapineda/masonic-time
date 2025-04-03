@@ -92,4 +92,23 @@ describe('FMTime parsing, validating, and manipulation', () => {
   test('parseABDate should convert A.B. date to JavaScript Date', () => {
     expect(fmTime.parseABDate("1/1/3935 A.B.")).toEqual(new Date(2024, 0, 1));
   });
-})
+});
+
+describe('Masonic date manipulation', () => {
+  let fmTime: FMTime;
+
+  beforeEach(() => {
+    fmTime = new FMTime();
+  });
+
+  test('addDays should correctly add days to a Masonic date', () => {
+    const date = fmTime.parseALDate("1/1/6025 A.L.");
+    expect(date).not.toBeNull();
+    expect(fmTime.addDays(date as Date, 10)).toEqual(new Date(2025, 0, 11));
+  });
+
+  test('subtractDays should correctly substract days to a Masonic date', () => {
+    const date = fmTime.parseALDate("1/11/6025 A.L.");
+    expect(fmTime.subtractDays(date as Date, 10)).toEqual(new Date(2025, 0, 1));
+  });
+});
