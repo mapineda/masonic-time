@@ -111,4 +111,9 @@ describe('Masonic date manipulation', () => {
     const date = fmTime.parseALDate("1/11/6025 A.L.");
     expect(fmTime.subtractDays(date as Date, 10)).toEqual(new Date(2025, 0, 1));
   });
+
+  test("addMonths should correctly add months to a Masonic date", () => {
+    const date = fmTime.parseALDate("1/1/6025 A.L.");
+    expect(fmTime.addMonths(date as Date, 2)).toEqual(new Date(2025, 2, 1));
+  });
 });

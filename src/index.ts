@@ -113,4 +113,10 @@ export class FMTime {
     newDate.setDate(newDate.getUTCDate() - days);
     return newDate;
   }
+
+  addMonths(date: Date, months: number): Date {
+    const newDate = new Date(date);
+    newDate.setMonth(newDate.getUTCMonth() + months);
+    return newDate;
+  }
 }
