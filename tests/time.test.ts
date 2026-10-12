@@ -107,6 +107,68 @@ describe('FMTime parsing, validating, and manipulation', () => {
   });
 });
 
+describe('FMTime date validation', () => {
+  let fmTime: FMTime;
+
+  beforeEach(() => {
+    fmTime = new FMTime();
+  });
+
+  test('isValidALDate should accept a well-formed A.L. date', () => {
+    expect(fmTime.isValidALDate("1/1/6024 A.L")).toBe(true);
+  });
+
+  test('isValidALDate should reject a date with an out-of-range month', () => {
+    expect(fmTime.isValidALDate("13/1/6024 A.L")).toBe(false);
+  });
+
+  test('isValidALDate should reject a day that does not exist in the given month', () => {
+    expect(fmTime.isValidALDate("4/31/6024 A.L")).toBe(false);
+  });
+
+  test('isValidALDate should accept Feb 29 on a leap year', () => {
+    expect(fmTime.isValidALDate("2/29/6024 A.L")).toBe(true);
+  });
+
+  test('isValidALDate should reject Feb 29 on a non-leap year', () => {
+    expect(fmTime.isValidALDate("2/29/6023 A.L")).toBe(false);
+  });
+
+  test('isValidALDate should reject a string that does not match the A.L. format', () => {
+    expect(fmTime.isValidALDate("1/1/6024 A.M")).toBe(false);
+  });
+
+  test('isValidAMDate should validate an Anno Mundi (A.M.) date', () => {
+    expect(fmTime.isValidAMDate("1/1/5784 A.M")).toBe(true);
+    expect(fmTime.isValidAMDate("2/30/5784 A.M")).toBe(false);
+  });
+
+  test('isValidAIDate should validate an Anno Inventionis (A.I.) date', () => {
+    expect(fmTime.isValidAIDate("1/1/2554 A.I")).toBe(true);
+    expect(fmTime.isValidAIDate("2/30/2554 A.I")).toBe(false);
+  });
+
+  test('isValidADepDate should validate an Anno Depositionis (A.Dep.) date', () => {
+    expect(fmTime.isValidADepDate("1/1/3024 A.Dep.")).toBe(true);
+    expect(fmTime.isValidADepDate("2/30/3024 A.Dep.")).toBe(false);
+  });
+
+  test('isValidAODate should validate an Anno Ordinis (A.O.) date', () => {
+    expect(fmTime.isValidAODate("1/1/906 A.O")).toBe(true);
+    expect(fmTime.isValidAODate("2/30/906 A.O")).toBe(false);
+  });
+
+  test('isValidABDate should validate an Anno Benefacio (A.B.) date', () => {
+    expect(fmTime.isValidABDate("1/1/3935 A.B.")).toBe(true);
+    expect(fmTime.isValidABDate("2/30/3935 A.B.")).toBe(false);
+  });
+
+  test('isValidARDate should validate an Anno Renascent (A.R.) date', () => {
+    expect(fmTime.isValidARDate("1/1/3702 A.R.")).toBe(true);
+    expect(fmTime.isValidARDate("2/30/3702 A.R.")).toBe(false);
+  });
+});
+
 describe('Masonic date manipulation', () => {
   let fmTime: FMTime;
 

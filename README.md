@@ -62,6 +62,14 @@ console.log(fmTime.parseABDate("1/1/3935 A.M")); // '1/1/2024'
 console.log(fmTime.parseARDate("1/1/3702 A.R")); // '1/1/2024'
 ```
 
+## Validate Masonic Calendar Date Strings
+
+```typescript
+console.log(fmTime.isValidALDate("1/1/6024 A.L")); // true
+console.log(fmTime.isValidALDate("2/30/6024 A.L")); // false (February never has a 30th day)
+console.log(fmTime.isValidALDate("2/29/6024 A.L")); // true (2024 is a leap year)
+console.log(fmTime.isValidALDate("2/29/6023 A.L")); // false (2023 is not a leap year)
+```
 
 # API Reference
 
@@ -82,6 +90,13 @@ console.log(fmTime.parseARDate("1/1/3702 A.R")); // '1/1/2024'
 | `formatAODDate(date: Date)` | Formats a date in Anno Ordinis (A.O.) | `formatAODDate(new Date())` |
 | `formatABDate(date: Date)` | Formats a date in Anno Benefacio (A.B.) | `formatABDate(new Date())` |
 | `formatARDate(date: Date)` | Formats a date in Anno Renascent (A.R.) | `formatARDate(new Date())` |
+| `isValidALDate(dateStr: string)` | Validates an Anno Lucis (A.L.) date string | `isValidALDate("2/29/6024 A.L") → true` |
+| `isValidAMDate(dateStr: string)` | Validates an Anno Mundi (A.M.) date string | `isValidAMDate("1/1/5784 A.M") → true` |
+| `isValidAIDate(dateStr: string)` | Validates an Anno Inventionis (A.I.) date string | `isValidAIDate("1/1/2554 A.I") → true` |
+| `isValidADepDate(dateStr: string)` | Validates an Anno Depositionis (A.Dep.) date string | `isValidADepDate("1/1/3024 A.Dep.") → true` |
+| `isValidAODate(dateStr: string)` | Validates an Anno Ordinis (A.O.) date string | `isValidAODate("1/1/906 A.O") → true` |
+| `isValidABDate(dateStr: string)` | Validates an Anno Benefacio (A.B.) date string | `isValidABDate("1/1/3935 A.B.") → true` |
+| `isValidARDate(dateStr: string)` | Validates an Anno Renascent (A.R.) date string | `isValidARDate("1/1/3702 A.R.") → true` |
 
 
 # Tests
@@ -97,7 +112,7 @@ Jest will execute the test cases defined in tests/ to ensure all conversions, fo
 # TODO:
 
 - [X] *Parsing* (i.e., converting a formatted Masonic date back into a JavaScript Date object).
-- [] *Validating* (i.e., checking if a given Masonic date is valid).
+- [X] *Validating* (i.e., checking if a given Masonic date is valid).
 - [X] *Manipulating*  (i.e., adding/subtracting days, months, or years in Masonic time).
 
 # License
