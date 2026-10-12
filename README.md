@@ -12,14 +12,14 @@ npm install masonic-time
 Install via yarn:
 
 ```bash
-yarn install masonic-time
+yarn add masonic-time
 ```
 
 # Usage
 
 ## Importing the library
 ```typescript
-import FMTime from 'masonic-time';
+import { FMTime } from 'masonic-time';
 
 const fmTime = new FMTime();
 ```
@@ -32,6 +32,7 @@ console.log(fmTime.toAI(2024)); // 2554 (Anno Inventionis)
 console.log(fmTime.toAdep(2024)); // 3024 (Anno Depositionis)
 console.log(fmTime.toAO(2024)); // 906 (Anno Ordinis)
 console.log(fmTime.toAB(2024)); // 3935 (Anno Benefacio)
+console.log(fmTime.toAR(2026)); // 3704 (Anno Renascent)
 ```
 
 ## Format Dates Using Masonic Calendar Systems
@@ -45,6 +46,7 @@ console.log(fmTime.formatAIDate(date)); // '1/1/2554'
 console.log(fmTime.formatAdepDate(date)); // '1/1/3024'
 console.log(fmTime.formatAODDate(date)); // '1/1/906'
 console.log(fmTime.formatABDate(date)); // '1/1/3935'
+console.log(fmTime.formatARDate(date)); // '1/1/3702'
 
 ```
 ## Parse Dates Masonic Calendar Strings to Javascript Date
@@ -57,6 +59,7 @@ console.log(fmTime.parseAIDate("1/1/2554 A.M")); // '1/1/2024'
 console.log(fmTime.parseADepDate("1/1/3024 A.M")); // '1/1/2024'
 console.log(fmTime.parseAODate("1/1/906 A.M")); // '1/1/2024'
 console.log(fmTime.parseABDate("1/1/3935 A.M")); // '1/1/2024'
+console.log(fmTime.parseARDate("1/1/3702 A.R")); // '1/1/2024'
 ```
 
 
@@ -71,12 +74,14 @@ console.log(fmTime.parseABDate("1/1/3935 A.M")); // '1/1/2024'
 | `toAdep(year: number)` | Converts Gregorian year to Anno Depositionis (A.Dep.) | `toAdep(2024) → 3024` |
 | `toAO(year: number)` | Converts Gregorian year to Anno Ordinis (A.O.) | `toAO(2024) → 906` |
 | `toAB(year: number)` | Converts Gregorian year to Anno Benefacio (A.B.) | `toAB(2024) → 3935` |
+| `toAR(year: number)` | Converts Gregorian year to Anno Renascent (A.R.) | `toAR(2026) → 3704` |
 | `formatALDate(date: Date)` | Formats a date in Anno Lucis (A.L.) | `formatALDate(new Date())` |
 | `formatAMDate(date: Date)` | Formats a date in Anno Mundi (A.M.) | `formatAMDate(new Date())` |
 | `formatAIDate(date: Date)` | Formats a date in Anno Inventionis (A.I.) | `formatAIDate(new Date())` |
 | `formatAdepDate(date: Date)` | Formats a date in Anno Depositionis (A.Dep.) | `formatAdepDate(new Date())` |
 | `formatAODDate(date: Date)` | Formats a date in Anno Ordinis (A.O.) | `formatAODDate(new Date())` |
 | `formatABDate(date: Date)` | Formats a date in Anno Benefacio (A.B.) | `formatABDate(new Date())` |
+| `formatARDate(date: Date)` | Formats a date in Anno Renascent (A.R.) | `formatARDate(new Date())` |
 
 
 # Tests
@@ -87,13 +92,13 @@ To run tests, use the following command:
 ```bash
 npm test
 ```
-Jest will execute the test cases defined in __tests__ to ensure all conversions and formatting methods work as expected.
+Jest will execute the test cases defined in tests/ to ensure all conversions, formatting, and manipulation methods work as expected.
 
 # TODO:
 
 - [X] *Parsing* (i.e., converting a formatted Masonic date back into a JavaScript Date object).
 - [] *Validating* (i.e., checking if a given Masonic date is valid).
-- [] *Manipulating*  (i.e., adding/subtracting days, months, or years in Masonic time).
+- [X] *Manipulating*  (i.e., adding/subtracting days, months, or years in Masonic time).
 
 # License
 This package is licensed under the MIT License.

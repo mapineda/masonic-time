@@ -31,6 +31,10 @@ describe('FMTime', () => {
     expect(fmTime.toAB(2025)).toBe(3936);
   });
 
+  test('should correctly calculate Anno Renascent (A.R.) year', () => {
+    expect(fmTime.toAR(2026)).toBe(3704);
+  });
+
   test('should correctly format date in Anno Lucis (A.L.)', () => {
     const date = new Date('2024-01-01');
     expect(fmTime.formatALDate(date)).toBe('1/1/6024');
@@ -58,6 +62,11 @@ describe('FMTime', () => {
   test('should correctly format date in Anno Benefacio (A.B.)', () => {
       const date = new Date('2024-01-01');
       expect(fmTime.formatABDate(date)).toBe('1/1/3935');
+  });
+
+  test('should correctly format date in Anno Renascent (A.R.)', () => {
+      const date = new Date('2024-01-01');
+      expect(fmTime.formatARDate(date)).toBe('1/1/3702');
   });
 });
 
@@ -91,6 +100,10 @@ describe('FMTime parsing, validating, and manipulation', () => {
 
   test('parseABDate should convert A.B. date to JavaScript Date', () => {
     expect(fmTime.parseABDate("1/1/3935 A.B.")).toEqual(new Date(2024, 0, 1));
+  });
+
+  test('parseARDate should convert A.R. date to JavaScript Date', () => {
+    expect(fmTime.parseARDate("1/1/3702 A.R.")).toEqual(new Date(2024, 0, 1));
   });
 });
 
