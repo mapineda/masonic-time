@@ -5,9 +5,9 @@ export class FMTime {
   private yearADepOffset: number = 1000;
   private yearAOrOffset: number = -1118;
   private yearABOffset: number = 1911;
+  private yearAROffset: number = 1678;
 
   private parseMasonicDate(dateStr: string, offset: number, suffix: string): Date | null {
-    console.log('***** ', dateStr);
     const regex = new RegExp(`^(\\d{1,2})/(\\d{1,2})/(\\d{1,4}) ${suffix}\\.?$`);
     const match = dateStr.match(regex);
     if (!match) return null;
@@ -40,6 +40,10 @@ export class FMTime {
 
   toAB(year: number): number {
     return year + this.yearABOffset;
+  }
+
+  toAR(year: number): number {
+    return year + this.yearAROffset;
   }
 
   formatALDate(date: Date): string {
@@ -78,6 +82,12 @@ export class FMTime {
     return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${toAB}`;
   }
 
+  formatARDate(date: Date): string {
+    const year = date.getUTCFullYear();
+    const arYear = this.toAR(year);
+    return `${date.getUTCMonth() + 1}/${date.getUTCDate()}/${arYear}`;
+  }
+
   parseALDate(dateStr: string): Date | null {
     return this.parseMasonicDate(dateStr, this.yearALOffset, "A\\.L");
   }
@@ -100,6 +110,10 @@ export class FMTime {
 
   parseABDate(dateStr: string): Date | null {
       return this.parseMasonicDate(dateStr, this.yearABOffset, "A\\.B");
+  }
+
+  parseARDate(dateStr: string): Date | null {
+      return this.parseMasonicDate(dateStr, this.yearAROffset, "A\\.R");
   }
 
   addDays(date: Date, days: number): Date {
