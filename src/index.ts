@@ -18,6 +18,19 @@ export class FMTime {
     return new Date(gregorianYear, month - 1, day);
   }
 
+  private isValidMasonicDate(dateStr: string, offset: number, suffix: string): boolean {
+    const regex = new RegExp(`^(\\d{1,2})/(\\d{1,2})/(\\d{1,4}) ${suffix}\\.?$`);
+    const match = dateStr.match(regex);
+    if (!match) return false;
+
+    const [, month, day, masonicYear] = match.map(Number);
+    if (month < 1 || month > 12) return false;
+
+    const gregorianYear = masonicYear - offset;
+    const daysInMonth = new Date(gregorianYear, month, 0).getDate();
+    return day >= 1 && day <= daysInMonth;
+  }
+
   toAL(year: number): number {
     return year + this.yearALOffset;
   }
@@ -114,6 +127,34 @@ export class FMTime {
 
   parseARDate(dateStr: string): Date | null {
       return this.parseMasonicDate(dateStr, this.yearAROffset, "A\\.R");
+  }
+
+  isValidALDate(dateStr: string): boolean {
+    return this.isValidMasonicDate(dateStr, this.yearALOffset, "A\\.L");
+  }
+
+  isValidAMDate(dateStr: string): boolean {
+    return this.isValidMasonicDate(dateStr, this.yearAMOffset, "A\\.M");
+  }
+
+  isValidAIDate(dateStr: string): boolean {
+    return this.isValidMasonicDate(dateStr, this.yearAIOffset, "A\\.I");
+  }
+
+  isValidADepDate(dateStr: string): boolean {
+    return this.isValidMasonicDate(dateStr, this.yearADepOffset, "A\\.Dep");
+  }
+
+  isValidAODate(dateStr: string): boolean {
+    return this.isValidMasonicDate(dateStr, this.yearAOrOffset, "A\\.O");
+  }
+
+  isValidABDate(dateStr: string): boolean {
+    return this.isValidMasonicDate(dateStr, this.yearABOffset, "A\\.B");
+  }
+
+  isValidARDate(dateStr: string): boolean {
+    return this.isValidMasonicDate(dateStr, this.yearAROffset, "A\\.R");
   }
 
   addDays(date: Date, days: number): Date {
