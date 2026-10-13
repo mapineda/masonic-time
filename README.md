@@ -1,4 +1,5 @@
 # masonic-time
+
 A Javascript date library for parsing, validating, manipulating, and formatting Masonic dates.
 
 # Installation
@@ -18,6 +19,7 @@ yarn add masonic-time
 # Usage
 
 ## Importing the library
+
 ```typescript
 import { FMTime } from 'masonic-time';
 
@@ -25,11 +27,12 @@ const fmTime = new FMTime();
 ```
 
 ## Convert Gregorian Year to Masonic Calendar Years
+
 ```typescript
 console.log(fmTime.toAL(2024)); // 6024 (Anno Lucis)
 console.log(fmTime.toAM(2024)); // 5784 (Anno Mundi)
 console.log(fmTime.toAI(2024)); // 2554 (Anno Inventionis)
-console.log(fmTime.toAdep(2024)); // 3024 (Anno Depositionis)
+console.log(fmTime.toADep(2024)); // 3024 (Anno Depositionis)
 console.log(fmTime.toAO(2024)); // 906 (Anno Ordinis)
 console.log(fmTime.toAB(2024)); // 3935 (Anno Benefacio)
 console.log(fmTime.toAR(2026)); // 3704 (Anno Renascent)
@@ -47,73 +50,98 @@ console.log(fmTime.formatAdepDate(date)); // '1/1/3024'
 console.log(fmTime.formatAODDate(date)); // '1/1/906'
 console.log(fmTime.formatABDate(date)); // '1/1/3935'
 console.log(fmTime.formatARDate(date)); // '1/1/3702'
-
 ```
+
 ## Parse Dates Masonic Calendar Strings to Javascript Date
 
 ```typescript
-
-console.log(fmTime.parseALDate("1/1/6024 A.L")); // '1/1/2024'
-console.log(fmTime.parseAMDate("1/1/5784 A.M")); // '1/1/2024'
-console.log(fmTime.parseAIDate("1/1/2554 A.M")); // '1/1/2024'
-console.log(fmTime.parseADepDate("1/1/3024 A.M")); // '1/1/2024'
-console.log(fmTime.parseAODate("1/1/906 A.M")); // '1/1/2024'
-console.log(fmTime.parseABDate("1/1/3935 A.M")); // '1/1/2024'
-console.log(fmTime.parseARDate("1/1/3702 A.R")); // '1/1/2024'
+console.log(fmTime.parseALDate('1/1/6024 A.L')); // '1/1/2024'
+console.log(fmTime.parseAMDate('1/1/5784 A.M')); // '1/1/2024'
+console.log(fmTime.parseAIDate('1/1/2554 A.M')); // '1/1/2024'
+console.log(fmTime.parseADepDate('1/1/3024 A.M')); // '1/1/2024'
+console.log(fmTime.parseAODate('1/1/906 A.M')); // '1/1/2024'
+console.log(fmTime.parseABDate('1/1/3935 A.M')); // '1/1/2024'
+console.log(fmTime.parseARDate('1/1/3702 A.R')); // '1/1/2024'
 ```
 
 ## Validate Masonic Calendar Date Strings
 
 ```typescript
-console.log(fmTime.isValidALDate("1/1/6024 A.L")); // true
-console.log(fmTime.isValidALDate("2/30/6024 A.L")); // false (February never has a 30th day)
-console.log(fmTime.isValidALDate("2/29/6024 A.L")); // true (2024 is a leap year)
-console.log(fmTime.isValidALDate("2/29/6023 A.L")); // false (2023 is not a leap year)
+console.log(fmTime.isValidALDate('1/1/6024 A.L')); // true
+console.log(fmTime.isValidALDate('2/30/6024 A.L')); // false (February never has a 30th day)
+console.log(fmTime.isValidALDate('2/29/6024 A.L')); // true (2024 is a leap year)
+console.log(fmTime.isValidALDate('2/29/6023 A.L')); // false (2023 is not a leap year)
+```
+
+## Manipulate Dates
+
+All dates are treated as UTC calendar dates (no time-of-day component), so results are consistent regardless of the host machine's timezone.
+
+```typescript
+const date = new Date('2024-01-01');
+
+console.log(fmTime.addDays(date, 10)); // 2024-01-11
+console.log(fmTime.subtractDays(date, 1)); // 2023-12-31
+console.log(fmTime.addMonths(date, 2)); // 2024-03-01
+console.log(fmTime.subtractMonths(date, 1)); // 2023-12-01
+console.log(fmTime.addYears(date, 1)); // 2025-01-01
+console.log(fmTime.subtractYears(date, 1)); // 2023-01-01
 ```
 
 # API Reference
 
 ### **Methods**
-| Method | Description | Example |
-|--------|-------------|---------|
-| `toAL(year: number)` | Converts Gregorian year to Anno Lucis (A.L.) | `toAL(2024) → 6024` |
-| `toAM(year: number)` | Converts Gregorian year to Anno Mundi (A.M.) | `toAM(2024) → 5784` |
-| `toAI(year: number)` | Converts Gregorian year to Anno Inventionis (A.I.) | `toAI(2024) → 2554` |
-| `toAdep(year: number)` | Converts Gregorian year to Anno Depositionis (A.Dep.) | `toAdep(2024) → 3024` |
-| `toAO(year: number)` | Converts Gregorian year to Anno Ordinis (A.O.) | `toAO(2024) → 906` |
-| `toAB(year: number)` | Converts Gregorian year to Anno Benefacio (A.B.) | `toAB(2024) → 3935` |
-| `toAR(year: number)` | Converts Gregorian year to Anno Renascent (A.R.) | `toAR(2026) → 3704` |
-| `formatALDate(date: Date)` | Formats a date in Anno Lucis (A.L.) | `formatALDate(new Date())` |
-| `formatAMDate(date: Date)` | Formats a date in Anno Mundi (A.M.) | `formatAMDate(new Date())` |
-| `formatAIDate(date: Date)` | Formats a date in Anno Inventionis (A.I.) | `formatAIDate(new Date())` |
-| `formatAdepDate(date: Date)` | Formats a date in Anno Depositionis (A.Dep.) | `formatAdepDate(new Date())` |
-| `formatAODDate(date: Date)` | Formats a date in Anno Ordinis (A.O.) | `formatAODDate(new Date())` |
-| `formatABDate(date: Date)` | Formats a date in Anno Benefacio (A.B.) | `formatABDate(new Date())` |
-| `formatARDate(date: Date)` | Formats a date in Anno Renascent (A.R.) | `formatARDate(new Date())` |
-| `isValidALDate(dateStr: string)` | Validates an Anno Lucis (A.L.) date string | `isValidALDate("2/29/6024 A.L") → true` |
-| `isValidAMDate(dateStr: string)` | Validates an Anno Mundi (A.M.) date string | `isValidAMDate("1/1/5784 A.M") → true` |
-| `isValidAIDate(dateStr: string)` | Validates an Anno Inventionis (A.I.) date string | `isValidAIDate("1/1/2554 A.I") → true` |
-| `isValidADepDate(dateStr: string)` | Validates an Anno Depositionis (A.Dep.) date string | `isValidADepDate("1/1/3024 A.Dep.") → true` |
-| `isValidAODate(dateStr: string)` | Validates an Anno Ordinis (A.O.) date string | `isValidAODate("1/1/906 A.O") → true` |
-| `isValidABDate(dateStr: string)` | Validates an Anno Benefacio (A.B.) date string | `isValidABDate("1/1/3935 A.B.") → true` |
-| `isValidARDate(dateStr: string)` | Validates an Anno Renascent (A.R.) date string | `isValidARDate("1/1/3702 A.R.") → true` |
 
+| Method                                       | Description                                           | Example                                     |
+| -------------------------------------------- | ----------------------------------------------------- | ------------------------------------------- |
+| `toAL(year: number)`                         | Converts Gregorian year to Anno Lucis (A.L.)          | `toAL(2024) → 6024`                         |
+| `toAM(year: number)`                         | Converts Gregorian year to Anno Mundi (A.M.)          | `toAM(2024) → 5784`                         |
+| `toAI(year: number)`                         | Converts Gregorian year to Anno Inventionis (A.I.)    | `toAI(2024) → 2554`                         |
+| `toAdep(year: number)`                       | Converts Gregorian year to Anno Depositionis (A.Dep.) | `toAdep(2024) → 3024`                       |
+| `toAO(year: number)`                         | Converts Gregorian year to Anno Ordinis (A.O.)        | `toAO(2024) → 906`                          |
+| `toAB(year: number)`                         | Converts Gregorian year to Anno Benefacio (A.B.)      | `toAB(2024) → 3935`                         |
+| `toAR(year: number)`                         | Converts Gregorian year to Anno Renascent (A.R.)      | `toAR(2026) → 3704`                         |
+| `formatALDate(date: Date)`                   | Formats a date in Anno Lucis (A.L.)                   | `formatALDate(new Date())`                  |
+| `formatAMDate(date: Date)`                   | Formats a date in Anno Mundi (A.M.)                   | `formatAMDate(new Date())`                  |
+| `formatAIDate(date: Date)`                   | Formats a date in Anno Inventionis (A.I.)             | `formatAIDate(new Date())`                  |
+| `formatAdepDate(date: Date)`                 | Formats a date in Anno Depositionis (A.Dep.)          | `formatAdepDate(new Date())`                |
+| `formatAODDate(date: Date)`                  | Formats a date in Anno Ordinis (A.O.)                 | `formatAODDate(new Date())`                 |
+| `formatABDate(date: Date)`                   | Formats a date in Anno Benefacio (A.B.)               | `formatABDate(new Date())`                  |
+| `formatARDate(date: Date)`                   | Formats a date in Anno Renascent (A.R.)               | `formatARDate(new Date())`                  |
+| `isValidALDate(dateStr: string)`             | Validates an Anno Lucis (A.L.) date string            | `isValidALDate("2/29/6024 A.L") → true`     |
+| `isValidAMDate(dateStr: string)`             | Validates an Anno Mundi (A.M.) date string            | `isValidAMDate("1/1/5784 A.M") → true`      |
+| `isValidAIDate(dateStr: string)`             | Validates an Anno Inventionis (A.I.) date string      | `isValidAIDate("1/1/2554 A.I") → true`      |
+| `isValidADepDate(dateStr: string)`           | Validates an Anno Depositionis (A.Dep.) date string   | `isValidADepDate("1/1/3024 A.Dep.") → true` |
+| `isValidAODate(dateStr: string)`             | Validates an Anno Ordinis (A.O.) date string          | `isValidAODate("1/1/906 A.O") → true`       |
+| `isValidABDate(dateStr: string)`             | Validates an Anno Benefacio (A.B.) date string        | `isValidABDate("1/1/3935 A.B.") → true`     |
+| `isValidARDate(dateStr: string)`             | Validates an Anno Renascent (A.R.) date string        | `isValidARDate("1/1/3702 A.R.") → true`     |
+| `addDays(date: Date, days: number)`          | Adds days to a date (UTC)                             | `addDays(date, 10)`                         |
+| `subtractDays(date: Date, days: number)`     | Subtracts days from a date (UTC)                      | `subtractDays(date, 10)`                    |
+| `addMonths(date: Date, months: number)`      | Adds months to a date (UTC)                           | `addMonths(date, 2)`                        |
+| `subtractMonths(date: Date, months: number)` | Subtracts months from a date (UTC)                    | `subtractMonths(date, 2)`                   |
+| `addYears(date: Date, years: number)`        | Adds years to a date (UTC)                            | `addYears(date, 1)`                         |
+| `subtractYears(date: Date, years: number)`   | Subtracts years from a date (UTC)                     | `subtractYears(date, 1)`                    |
 
 # Tests
+
 masonic-time follows a Test-Driven Development (TDD) approach using Jest.
 
 ## Running Tests
+
 To run tests, use the following command:
+
 ```bash
 npm test
 ```
+
 Jest will execute the test cases defined in tests/ to ensure all conversions, formatting, and manipulation methods work as expected.
 
 # TODO:
 
-- [X] *Parsing* (i.e., converting a formatted Masonic date back into a JavaScript Date object).
-- [X] *Validating* (i.e., checking if a given Masonic date is valid).
-- [X] *Manipulating*  (i.e., adding/subtracting days, months, or years in Masonic time).
+- [x] _Parsing_ (i.e., converting a formatted Masonic date back into a JavaScript Date object).
+- [x] _Validating_ (i.e., checking if a given Masonic date is valid).
+- [x] _Manipulating_ (i.e., adding/subtracting days, months, or years in Masonic time).
 
 # License
+
 This package is licensed under the MIT License.
