@@ -1,0 +1,50 @@
+name: Bug report
+description: Something in masonic-time isn't working as expected.
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: A clear description of the bug.
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: Code that reproduces the issue (method calls, inputs, and the Date/string values used).
+      render: typescript
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: masonic-time version
+      placeholder: '1.3.0'
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Runtime and OS
+      placeholder: 'Node 20.12.1 on macOS 14; or browser/engine + version'
+    validations:
+      required: false

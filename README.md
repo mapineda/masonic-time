@@ -1,5 +1,8 @@
 # masonic-time
 
+[![CI](https://github.com/mapineda/masonic-time/actions/workflows/ci.yml/badge.svg)](https://github.com/mapineda/masonic-time/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/masonic-time.svg)](https://www.npmjs.com/package/masonic-time)
+
 A Javascript date library for parsing, validating, manipulating, and formatting Masonic dates.
 
 # Installation
@@ -141,6 +144,10 @@ Jest will execute the test cases defined in tests/ to ensure all conversions, fo
 - [x] _Parsing_ (i.e., converting a formatted Masonic date back into a JavaScript Date object).
 - [x] _Validating_ (i.e., checking if a given Masonic date is valid).
 - [x] _Manipulating_ (i.e., adding/subtracting days, months, or years in Masonic time).
+
+# Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for how to get set up, the conventions this project follows, and what a pull request needs. This project follows a [Code of Conduct](CODE_OF_CONDUCT.md).
 
 # License
 
