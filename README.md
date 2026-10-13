@@ -1,5 +1,8 @@
 # masonic-time
 
+[![CI](https://github.com/mapineda/masonic-time/actions/workflows/ci.yml/badge.svg)](https://github.com/mapineda/masonic-time/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/masonic-time.svg)](https://www.npmjs.com/package/masonic-time)
+
 A Javascript date library for parsing, validating, manipulating, and formatting Masonic dates.
 
 # Installation
@@ -97,7 +100,7 @@ console.log(fmTime.subtractYears(date, 1)); // 2023-01-01
 | `toAL(year: number)`                         | Converts Gregorian year to Anno Lucis (A.L.)          | `toAL(2024) → 6024`                         |
 | `toAM(year: number)`                         | Converts Gregorian year to Anno Mundi (A.M.)          | `toAM(2024) → 5784`                         |
 | `toAI(year: number)`                         | Converts Gregorian year to Anno Inventionis (A.I.)    | `toAI(2024) → 2554`                         |
-| `toAdep(year: number)`                       | Converts Gregorian year to Anno Depositionis (A.Dep.) | `toAdep(2024) → 3024`                       |
+| `toADep(year: number)`                       | Converts Gregorian year to Anno Depositionis (A.Dep.) | `toADep(2024) → 3024`                       |
 | `toAO(year: number)`                         | Converts Gregorian year to Anno Ordinis (A.O.)        | `toAO(2024) → 906`                          |
 | `toAB(year: number)`                         | Converts Gregorian year to Anno Benefacio (A.B.)      | `toAB(2024) → 3935`                         |
 | `toAR(year: number)`                         | Converts Gregorian year to Anno Renascent (A.R.)      | `toAR(2026) → 3704`                         |
@@ -136,11 +139,20 @@ npm test
 
 Jest will execute the test cases defined in tests/ to ensure all conversions, formatting, and manipulation methods work as expected.
 
-# TODO:
+# Ideas for Contribution
 
-- [x] _Parsing_ (i.e., converting a formatted Masonic date back into a JavaScript Date object).
-- [x] _Validating_ (i.e., checking if a given Masonic date is valid).
-- [x] _Manipulating_ (i.e., adding/subtracting days, months, or years in Masonic time).
+Parsing, validating, and manipulating Masonic dates are all covered. If you're looking for something to work on, here are some open ideas — see [CONTRIBUTING.md](CONTRIBUTING.md) for how to propose or pick one up:
+
+- [ ] _Flexible formatting_: zero-padded output (`01/01/6024`), an ISO-8601-style format, or a configurable separator/format string.
+- [ ] _Flexible parsing_: accept lowercase suffixes (`a.l`), alternate separators (`-`, `.`), or written month names.
+- [ ] _Locale/i18n support_: suffixes and labels in languages other than English.
+- [ ] _Browser/UMD build_: a bundled distribution for use without a module bundler (e.g. a `<script>` tag).
+- [ ] _Round-trip property tests_: fuzz/property-based tests asserting `parse(format(date)) === date` for every calendar system.
+- [ ] _Automated releases_: wire up `semantic-release` or `changesets` so publishing to npm is driven by merged PRs instead of a manual `npm version`.
+
+# Contributing
+
+Contributions are welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for how to get set up, the conventions this project follows, and what a pull request needs. This project follows a [Code of Conduct](CODE_OF_CONDUCT.md).
 
 # License
 

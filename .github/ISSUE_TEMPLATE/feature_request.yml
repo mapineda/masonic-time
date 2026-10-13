@@ -1,0 +1,28 @@
+name: Feature request
+description: Suggest a new calendar system, method, or capability.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does this solve?
+      description: What are you trying to do that the library doesn't support today?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed API
+      description: What would the method signature(s) look like? If this is a new Masonic calendar system, include its name, abbreviation, and year offset from the Gregorian calendar.
+      render: typescript
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Can this be done with the existing API? Why isn't that sufficient?
+    validations:
+      required: false
