@@ -143,7 +143,6 @@ Jest will execute the test cases defined in tests/ to ensure all conversions, fo
 
 Parsing, validating, and manipulating Masonic dates are all covered. If you're looking for something to work on, here are some open ideas — see [CONTRIBUTING.md](CONTRIBUTING.md) for how to propose or pick one up:
 
-
 - [ ] _Flexible formatting_: zero-padded output (`01/01/6024`), an ISO-8601-style format, or a configurable separator/format string.
 - [ ] _Flexible parsing_: accept lowercase suffixes (`a.l`), alternate separators (`-`, `.`), or written month names.
 - [ ] _Locale/i18n support_: suffixes and labels in languages other than English.
